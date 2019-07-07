@@ -53,11 +53,9 @@ client.on('message', async message => {
                 if (err) console.error(err);
                 if (!message.content.startsWith(g.variables.prefix) || message.author.bot) {
                     // MESSAGE HANDLING
-                    let botCheck = message.channels.forEach(c => c.name === 'botCheck');
+                    let botCheck = message.guild.channels.find(c => c.name === 'botCheck');
                     if (!botCheck) {
-                        message.guild.createChannel('botCheck').then(c => {
-
-                        }).catch()
+                        message.guild.createChannel('botCheck').then(c => { console.log(`Created ${c.name}`); }).catch((e) => { console.log(e); }
                     }
                     if (message.author.bot) {
                         if (g.channels.userOnlyChannelIDs !== null) {
